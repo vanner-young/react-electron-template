@@ -12,7 +12,11 @@
         "eslint",
         "electron",
         "axios",
-        "typescript"
+        "typescript",
+        "husky",
+        "lint-staged",
+        "prettier",
+        "website"
     ],
     "scripts": {
         "dev": "mv-cli start",

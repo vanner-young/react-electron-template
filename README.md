@@ -46,4 +46,4 @@ npm run lint
 
 #### 功能列表
 
-1. react router、mobx、i18n、eslint、electron、axios、typescript
+1. react router、mobx、i18n、eslint、electron、axios、typescript、husky、lint-staged、prettier、website
