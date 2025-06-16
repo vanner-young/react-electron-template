@@ -1,0 +1,79 @@
+{
+    "id": "4921308",
+    "name": "react-electron-template",
+    "font_family": "iconfont",
+    "css_prefix_text": "icon-",
+    "description": "",
+    "glyphs": [
+        {
+            "icon_id": "1299763",
+            "name": "Minimize-2",
+            "font_class": "min",
+            "unicode": "e65a",
+            "unicode_decimal": 58970
+        },
+        {
+            "icon_id": "10239266",
+            "name": "关闭",
+            "font_class": "close",
+            "unicode": "e720",
+            "unicode_decimal": 59168
+        },
+        {
+            "icon_id": "11036380",
+            "name": "后台",
+            "font_class": "houtai",
+            "unicode": "e624",
+            "unicode_decimal": 58916
+        },
+        {
+            "icon_id": "12303166",
+            "name": "重试",
+            "font_class": "retry",
+            "unicode": "e600",
+            "unicode_decimal": 58880
+        },
+        {
+            "icon_id": "41571476",
+            "name": "智能体-1",
+            "font_class": "agent",
+            "unicode": "e611",
+            "unicode_decimal": 58897
+        },
+        {
+            "icon_id": "8949037",
+            "name": "用户",
+            "font_class": "user",
+            "unicode": "e660",
+            "unicode_decimal": 58976
+        },
+        {
+            "icon_id": "3056132",
+            "name": "前端开发",
+            "font_class": "frontend",
+            "unicode": "e666",
+            "unicode_decimal": 58982
+        },
+        {
+            "icon_id": "20514017",
+            "name": "资料查询",
+            "font_class": "search",
+            "unicode": "e7c3",
+            "unicode_decimal": 59331
+        },
+        {
+            "icon_id": "29248705",
+            "name": "多语言翻译管理",
+            "font_class": "translate",
+            "unicode": "e8e8",
+            "unicode_decimal": 59624
+        },
+        {
+            "icon_id": "42124176",
+            "name": "文件分析",
+            "font_class": "analyze",
+            "unicode": "e76a",
+            "unicode_decimal": 59242
+        }
+    ]
+}

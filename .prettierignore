@@ -1,0 +1,8 @@
+## 需要忽略格式化的文件列表
+dist
+dist_electron
+node_modules
+public
+package.json
+package.lock.json
+src/asset

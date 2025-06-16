@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "CommonJS",
+        "strict": true,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "outDir": "./dist_electron",
+        "typeRoots": [
+            "./node_modules/@types", // 保留 @types/node
+            "./electron/app.env.d.ts" // 自定义声明文件目录
+        ],
+    },
+    "exclude": ["node_modules"],
+    "include": ["electron/**/*"],
+}

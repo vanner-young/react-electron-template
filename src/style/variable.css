@@ -1,0 +1,23 @@
+:root {
+    --bg-color: rgb(248, 247, 247);
+    --description-color: rgb(148 163 184);
+    --header-hover-color: #cccccc;
+}
+
+@theme {
+    --color-bg: var(--bg-color);
+    --color-description: var(--description-color);
+    --color-header-hover: var(--header-hover-color);
+}
+
+@utility app-region {
+    -webkit-app-region: drag;
+}
+
+@utility app-no-region {
+    -webkit-app-region: no-drag !important;
+}
+
+@utility bg-header-hover {
+    background: #cccccc;
+}
