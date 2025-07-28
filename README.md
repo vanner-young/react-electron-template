@@ -11,7 +11,7 @@
 1. npm install
 
 ## 启动项目
-2. npm run dev
+2. npm run start
 ```
 
 #### 使用说明
@@ -20,7 +20,7 @@
 
 ```bash
 ## 本地启动程序
-npm run dev
+npm run start
 
 ## 程序打包
 npm run build

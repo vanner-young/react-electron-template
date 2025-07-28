@@ -19,7 +19,7 @@
         "website"
     ],
     "scripts": {
-        "dev": "mv-cli start",
+        "start": "mv-cli start",
         "build": "tsc -b && mv-cli build",
         "lint": "eslint src electron --ext .js,.jsx,.ts,.tsx",
         "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css}\" \"electron/**/*.{js,ts,json}\"",
@@ -43,8 +43,8 @@
     "dependencies": {
         "@ant-design/x": "^1.2.0",
         "@tailwindcss/vite": "^4.1.7",
-        "@vite-electron-simple/common": "^1.1.6",
-        "@vite-electron-simple/core": "^1.1.5",
+        "@vite-electron-simple/common": "^1.1.7",
+        "@vite-electron-simple/core": "^1.1.10",
         "@vitejs/plugin-react": "^4.3.1",
         "ahooks": "^3.8.5",
         "antd": "^5.21.3",
