@@ -20,7 +20,7 @@ export const Home = memo(
 
         const ipcListen = useIpcListen();
         ipcListen(WindowListener.ready, (_: unknown, value: string) => {
-            console.log('electron 启动成功...', value);
+            console.log('electron 启动成功...', valvue);
         });
         const getAnswer = useEventSource(GET_ANSWER);
 
@@ -149,8 +149,8 @@ export const Home = memo(
         );
 
         return (
-            <section className="w-[100vw] h-full">
-                <section className="relative py-0 h-[calc(100%-60px)] flex flex-col">
+            <section className="w-[100vw] h-[calc(100%-100px)]">
+                <section className="relative py-0 h-full flex flex-col">
                     <section
                         className={`flex items-center justify-center min-h-[65vh] px-[15%] ${showThinkingStep ? 'flex-1 overflow-y-auto' : ''}`}
                     >

@@ -3,7 +3,9 @@ import tailwindcss from '@tailwindcss/vite';
 import PluginReact from '@vitejs/plugin-react';
 import { defineMvConfig } from '@vite-electron-simple/core';
 
+// 打包程序名称
 const APP_NAME = 'react-electron-template';
+
 export default defineMvConfig({
     privateConfig: {
         appName: APP_NAME,
