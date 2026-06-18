@@ -1,23 +1,88 @@
-:root {
-    --bg-color: rgb(248, 247, 247);
-    --description-color: rgb(148 163 184);
-    --header-hover-color: #cccccc;
+@import 'tailwindcss';
+
+/* 暗黑模式变量*/
+.dark {
+    --color-default-color: rgb(18, 18, 18);
+    --color-main-bg-color: rgb(18, 18, 18);
+    --color-code-color: rgb(20, 19, 20);
+    --color-label-color: rgba(255, 255, 255, 0.6);
+    --color-danger-color: #ee6366;
+    --color-primary-color: #1a878a;
+    --color-text-label-color: rgba(235, 235, 235, 0.6);
 }
 
 @theme {
-    --color-bg: var(--bg-color);
-    --color-description: var(--description-color);
-    --color-header-hover: var(--header-hover-color);
+    /* 字体定义 */
+    --font-family:
+        'Geist', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+        'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+        'Helvetica Neue', sans-serif;
+    --font-fallback:
+        'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+        'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+        'Helvetica Neue', sans-serif;
+
+    --font-kuaile: 'ZCOOL KuaiLe', sans-serif;
+    --font-montserrat: 'Montserrat', sans-serif;
+
+    /* 根字体大小 */
+    --root-font-size: 16px;
+
+    /* 颜色定义 */
+    --color-default-color: rgb(255, 255, 255);
+    --color-main-bg-color: rgb(245, 245, 245);
+    --color-code-color: rgb(235, 235, 235);
+    --color-label-color: rgb(82, 82, 91, 0.6);
+    --color-gray-color: rgb(102, 102, 102);
+    --color-primary-color: #00c9c8;
+    --color-secondary-color: #37d7bb;
+    --color-danger-color: #ee6366;
+    --color-text-label-color: rgba(60, 60, 60, 1);
+
+    /* 间距定义 */
+    --spacing-base: 10px;
+    --spacing-header-height: calc(var(--spacing-base) * 6);
+    --spacing-container-height: calc(100vh - var(--spacing-header-height));
+
+    /* 动画定义 */
+    --animate-move-x: move-x 2s linear infinite;
+    --animate-spin-rotate: spin-rotate 1s ease-in-out infinite;
+
+    @keyframes move-x {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(100%);
+        }
+    }
+
+    @keyframes spin-rotate {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
 }
 
-@utility app-region {
-    -webkit-app-region: drag;
+/* 样式类定义 */
+@utility box-shadow {
+    box-shadow: 0 0px 2px var(--color-gray-color);
 }
-
-@utility app-no-region {
-    -webkit-app-region: no-drag !important;
+@utility flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
-
-@utility bg-header-hover {
-    background: #cccccc;
+@utility flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@utility hover-font-color {
+    &:hover {
+        color: var(--color-primary-color);
+    }
 }

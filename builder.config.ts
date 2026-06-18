@@ -1,7 +1,8 @@
 import path from 'node:path';
-import tailwindcss from '@tailwindcss/vite';
 import PluginReact from '@vitejs/plugin-react';
 import { defineMvConfig } from '@vite-electron-simple/core';
+
+import tailwindcss from '@tailwindcss/vite';
 
 // 打包程序名称
 const APP_NAME = 'react-electron-template';

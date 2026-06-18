@@ -12,10 +12,6 @@ request.initRequest({
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
 });
 
-// 初始化 mobx
-import store from '@/store';
-store.initStore({ enforceActions: 'observed' });
-
 import '@/common/antdConfig';
 import './style/global.css';
 

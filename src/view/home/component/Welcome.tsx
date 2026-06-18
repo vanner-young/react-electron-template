@@ -3,6 +3,7 @@ import { Welcome } from '@ant-design/x';
 
 import Icon from '@/component/Icon';
 import { LOGO_URL } from '@/constance';
+import { useUserInfo } from '@/store/useUserInfo';
 
 const listData = [
     {
@@ -30,13 +31,14 @@ const listData = [
     }
 ];
 export default memo(function () {
+    const info = useUserInfo().info();
     return (
         <section className="w-full flex items-center justify-center flex-col">
             <Welcome
                 className="flex items-center"
                 variant="borderless"
                 icon={<img src={LOGO_URL} alt="logo" width={60} />}
-                title="你好，我是 react-electron-template， 有什么可以帮到你？"
+                title={`你好，我是${info?.nickname}， 有什么可以帮到你？`}
                 description="我可以帮你：编写网站代码、分析本地文件、分析抓取网页内容、操作本地系统、翻译文件~"
             />
             <section className="grid gap-[20px] grid-cols-2 mt-[50px]">
@@ -44,11 +46,13 @@ export default memo(function () {
                     return (
                         <section
                             key={item.name}
-                            className="py-[15px] px-[10px] radius-[10px] border-[#cccccc] border-1 flex flex-col cursor-pointer"
+                            className="py-[15px] px-[10px] radius-[10px] flex flex-col cursor-pointer box-shadow"
                         >
                             <section className="mb-[10px] flex items-center">
                                 <Icon name={`${item.name} text-[1rem]`} />
-                                <span className="ml-[5px]">{item.title}</span>
+                                <span className="ml-[5px] font-bold">
+                                    {item.title}
+                                </span>
                             </section>
                             <section className="text-[0.8rem]">
                                 {item.description}

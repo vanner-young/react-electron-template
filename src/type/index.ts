@@ -37,3 +37,19 @@ export interface ResponseAnswerData {
         }
     ];
 }
+
+export interface UserInfo {
+    id: string;
+    username: string;
+    status: string;
+    role: {
+        name: string;
+    };
+    info: {
+        nickname: string;
+        sex: number;
+        avatar_url: string;
+        phone: string;
+        des: string;
+    };
+}

@@ -1,13 +1,13 @@
 {
     "name": "react-electron-template",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "main": "dist_electron/main.js",
     "repository": "https://github.com/vanner-young/react-electron-template.git",
     "author": "杨金玉 <vanneryoung@gmail.com>",
     "license": "MIT",
     "keywords": [
         "react",
-        "mobx",
+        "zustand",
         "i18n",
         "eslint",
         "electron",
@@ -26,6 +26,7 @@
         "prepare": "husky"
     },
     "devDependencies": {
+        "@tailwindcss/vite": "^4.3.1",
         "@types/react": "^18.3.3",
         "@types/react-dom": "^18.3.0",
         "@typescript-eslint/eslint-plugin": "^7.16.0",
@@ -38,11 +39,11 @@
         "husky": "^9.1.0",
         "lint-staged": "^15.2.7",
         "prettier": "^3.3.2",
+        "tailwindcss": "^4.3.1",
         "vite": "^5.3.3"
     },
     "dependencies": {
         "@ant-design/x": "^1.2.0",
-        "@tailwindcss/vite": "^4.1.7",
         "@vite-electron-simple/common": "^1.1.7",
         "@vite-electron-simple/core": "^1.1.11",
         "@vitejs/plugin-react": "^4.3.1",
@@ -52,13 +53,11 @@
         "esbuild": "^0.24.2",
         "events": "^3.3.0",
         "lodash": "^4.17.21",
-        "mobx": "^6.13.0",
-        "mobx-react-lite": "^4.0.7",
         "mv-common": "^1.1.7",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
         "react-router-dom": "^6.24.1",
-        "tailwindcss": "^4.1.7",
-        "typescript": "^5.5.3"
+        "typescript": "^5.5.3",
+        "zustand": "^5.0.14"
     }
 }
