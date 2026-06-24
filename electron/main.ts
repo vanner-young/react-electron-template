@@ -21,11 +21,11 @@ let mainWindow: BrowserWindow | null = null;
 const iconPath = path.resolve(__dirname, '../public/logo.png');
 const createWindow = () => {
     const win = new BrowserWindow({
-        width: 1200,
-        height: 800,
+        minWidth: 1200,
+        minHeight: 800,
         frame: false,
         icon: iconPath,
-        resizable: false,
+        resizable: true,
         webPreferences: { preload: path.resolve(__dirname, './preload.js') }
     });
     win.loadURL((process.env.ELECTRON_URL as string) || `app://./index.html`);

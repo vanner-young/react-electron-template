@@ -42,7 +42,7 @@ export default memo(() => {
                         onClick={() => useIpcSend(WindowHandler.toggle)}
                         className="p-[12px] cursor-pointer inline-block hover:bg-header-hover app-no-region"
                     >
-                        <Icon title="后台运行" name="houtai font-bold" />
+                        <Icon title="全屏非全屏" name="houtai font-bold" />
                     </span>
                     <span
                         onClick={() => useIpcSend(WindowHandler.hidden)}
