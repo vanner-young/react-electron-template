@@ -1,71 +1,18 @@
 import path from 'node:path';
-import PluginReact from '@vitejs/plugin-react';
 import { defineMvConfig } from '@vite-electron-simple/core';
 
-import tailwindcss from '@tailwindcss/vite';
-
-// 打包程序名称
-const APP_NAME = 'react-electron-template';
+import viteConfig from './vite.config';
 
 export default defineMvConfig({
     privateConfig: {
-        appName: APP_NAME,
+        appName: 'react-electron-template',
         needElectron: true,
         tsMainConfigPath: path.resolve(__dirname, './tsconfig.main.json')
     },
-    viteConfig: {
-        base: './',
-        server: {
-            host: '0.0.0.0',
-            proxy: {
-                '/api/v1': {
-                    changeOrigin: true,
-                    target: 'http://127.0.0.1:3012'
-                }
-            }
-        },
-        plugins: [PluginReact(), tailwindcss()],
-        resolve: {
-            alias: {
-                '@': path.resolve(__dirname, './src')
-            }
-        },
-        build: {
-            assetsInlineLimit: 1,
-            rollupOptions: {
-                output: {
-                    assetFileNames: (assetInfo) => {
-                        const name =
-                            assetInfo.names?.[0] || assetInfo.name || '';
-                        const ext = name.match(/\.([^.]+)$/)?.[1];
-                        const assetMap = new Map([
-                            [['css'], 'assets/css'],
-                            [
-                                ['png', 'jpg', 'svg', 'gif', 'webp'],
-                                'assets/img'
-                            ],
-                            [['ttf', 'woff'], 'assets/font'],
-                            [['html'], 'assets/template']
-                        ]);
-                        for (const [key, value] of assetMap) {
-                            if (key.includes(ext as string))
-                                return value + '/[hash].[ext]';
-                        }
-                        return 'assets/other' + '/[hash].[ext]';
-                    },
-                    chunkFileNames() {
-                        return 'assets/js/[hash].js';
-                    },
-                    entryFileNames() {
-                        return 'assets/js/index.[hash].js';
-                    }
-                }
-            }
-        }
-    },
+    viteConfig: viteConfig,
     electronBuilder: {
         appId: 'com.vx.ai',
-        productName: APP_NAME,
+        productName: 'react-electron-template',
         directories: {
             output: 'bundle'
         },
@@ -73,13 +20,7 @@ export default defineMvConfig({
             from: 'electron/static',
             to: 'static'
         },
-        files: [
-            '**/*',
-            '!**/*.ts',
-            '!tsconfig.json',
-            '!yarn.lock',
-            '!package-lock.json'
-        ],
+        files: ['public', 'dist_electron'],
         win: {
             target: 'nsis',
             icon: 'public/logo.png'

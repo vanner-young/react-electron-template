@@ -10,7 +10,7 @@ import path from 'path';
 import { app, BrowserWindow } from 'electron';
 
 import { TrayApplication } from './core/Tray';
-import { EventCenterInstance } from './event';
+import { EventCenterInstance } from './event/index';
 
 Logger.open(); // 日志记录
 SingleAppLock(); // 程序单例

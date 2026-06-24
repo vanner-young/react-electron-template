@@ -7,7 +7,6 @@ import request from '@/request';
 
 request.initRequest({
     timeout: 60000,
-    server: import.meta.env.VITE_PROXY_SERVER,
     prefix: '/api/v1',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
 });
