@@ -32,7 +32,6 @@ export const ContentOrStep = memo((props: RobotMessageStepProps) => {
                     items={[
                         {
                             title: item?.title,
-                            status: item?.status,
                             icon: <IconRender status={item.status} />,
                             description: `状态： ${item?.status}`,
                             content: (

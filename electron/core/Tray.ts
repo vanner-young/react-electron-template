@@ -1,66 +1,55 @@
-// 系统托盘
-
-import { app, Tray, nativeImage, Menu, BrowserWindow } from 'electron';
 import { showTopApplication } from '@vite-electron-simple/common';
+import { app, Tray, nativeImage, Menu, BrowserWindow } from 'electron';
 
-import IpcEvent from '../event/window';
+import { EventCenterInstance } from '../event';
+import { BrowserEvent } from '../types/IpcEvent';
 
 export interface TrayProps {
     icon: string;
-    mainWindow: BrowserWindow;
+    window: BrowserWindow;
 }
 
-type Config = {
-    menus: Menu;
-    icon: string;
-};
-class TrayApplication {
-    #config: Config;
+export class TrayApplication {
+    _config = {
+        icon: '',
+        menus: Menu.buildFromTemplate([
+            {
+                label: '打开程序',
+                type: 'normal',
+                click: () => this.openApplication()
+            },
+            {
+                label: '退出',
+                type: 'normal',
+                click: () => this.quickApplication()
+            }
+        ])
+    };
+    _window!: BrowserWindow;
     #Tray!: Tray;
-    #mainWindow!: BrowserWindow;
 
-    constructor() {
-        this.openApplication = this.openApplication.bind(this);
-        this.quickApplication = this.quickApplication.bind(this);
-
-        this.#config = {
-            icon: '',
-            menus: Menu.buildFromTemplate([
-                {
-                    label: '打开程序',
-                    type: 'normal',
-                    click: this.openApplication
-                },
-                {
-                    label: '退出',
-                    type: 'normal',
-                    click: this.quickApplication
-                }
-            ])
-        };
+    constructor(props: TrayProps) {
+        this._window = props.window;
+        this._config.icon = props.icon;
     }
 
-    public start(props: TrayProps) {
-        this.#config.icon = props.icon;
-        this.#mainWindow = props.mainWindow;
-        this.#Tray = new Tray(nativeImage.createFromPath(this.#config.icon));
+    public start() {
+        this.#Tray = new Tray(nativeImage.createFromPath(this._config.icon));
         this.#Tray.setToolTip(app.getName());
-        this.#Tray.setContextMenu(this.#config.menus);
+        this.#Tray.setContextMenu(this._config.menus);
 
         this.#Tray.addListener('double-click', this.openApplication);
     }
 
     public async openApplication() {
-        await showTopApplication(this.#mainWindow);
-    }
-
-    public quickApplication() {
-        IpcEvent.sendEvent('quit:window');
+        await showTopApplication(this._window);
     }
 
     public destroy() {
         this.#Tray.destroy();
     }
-}
 
-export default new TrayApplication();
+    public quickApplication() {
+        EventCenterInstance.sendToRender(this._window, BrowserEvent.quitApp);
+    }
+}

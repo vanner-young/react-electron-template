@@ -1,26 +1,30 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { WindowListener } from '@/type';
 import { isClientEnv } from '@/common';
 
 const env = isClientEnv();
 const ipcRender = window.listenMain;
 
-export default function useIpcListen() {
-    return function <T>(
-        type: WindowListener,
-        cb: (_: unknown, value: T) => unknown
-    ) {
-        if (!env) return;
+export function useIpcListen<T>(
+    type: WindowListener,
+    cb: (_: unknown, value: T) => unknown
+) {
+    const handler = useRef(cb);
 
-        const cleanEffect = () => {
-            ipcRender.remove(type, cb);
-        };
+    const eventHandler = useCallback((event: unknown, value: T) => {
+        handler.current(event, value);
+    }, []);
 
-        useEffect(() => {
-            ipcRender.listen(type, cb);
-            return cleanEffect;
-        }, []);
-
-        return cleanEffect;
+    const clean = () => {
+        ipcRender.remove(type);
     };
+
+    useEffect(() => {
+        if (!env || !ipcRender) return;
+
+        ipcRender.listen(type, eventHandler);
+        return clean;
+    }, [type]);
+
+    return clean;
 }

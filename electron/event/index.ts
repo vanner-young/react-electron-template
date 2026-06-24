@@ -1,20 +1,25 @@
 import type { BrowserWindow } from 'electron';
-import window from './window';
 
-class BasicEvent {
-    // 事件按模块注册，每个事件对应的模块
-    public moduleEvent = {
-        // TODO...
-        window // 窗口事件监听
-    };
+import { WindowEventInstance } from './window';
+import { EventBaseName, BrowserEvent } from '../types/IpcEvent';
 
-    public register(mainWindow: BrowserWindow): void {
-        Object.values(this.moduleEvent).forEach((item) => {
-            item.setMainWindow(mainWindow);
-            item.register();
-            item.load(mainWindow);
+class EventCenter {
+    events = new Map([[EventBaseName.mainWindow, WindowEventInstance]]);
+
+    handler(window: BrowserWindow) {
+        this.events.forEach((instance, name) => {
+            instance.handler(name, window);
         });
+    }
+    removeHandler(baseName: EventBaseName, name: string) {
+        const instance = this.events.get(baseName);
+        if (!instance) return;
+
+        instance.removeHandler(baseName, name);
+    }
+    sendToRender(window: BrowserWindow, name: BrowserEvent, value?: unknown) {
+        window.webContents.send(name, value);
     }
 }
 
-export default new BasicEvent();
+export const EventCenterInstance = new EventCenter();

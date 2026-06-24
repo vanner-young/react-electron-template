@@ -12,6 +12,7 @@ interface Window {
     };
     listenMain: {
         listen: (type: string, cb: (...args: Array<any>) => unknown) => unknown;
-        remove: (type: string, cb: (...args: Array<any>) => unknown) => unknown;
+        remove: (type: string) => unknown;
     };
+    hasElectron: boolean;
 }

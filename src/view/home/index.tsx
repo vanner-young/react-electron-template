@@ -6,8 +6,7 @@ import MessageHistory from '@/component/MessageHistory';
 import { MessageHistoryList } from '@/component/MessageHistory/type';
 import Welcome from '@/view/home/component/Welcome';
 
-import { WindowListener, ResponseAnswerData } from '@/type';
-import useIpcListen from '@/hooks/useIpcListen';
+import { ResponseAnswerData } from '@/type';
 import useEventSource from '@/hooks/useEventSource';
 import { GET_ANSWER } from '@/request/sse/question';
 
@@ -17,10 +16,6 @@ export const Home = memo(() => {
         []
     );
 
-    const ipcListen = useIpcListen();
-    ipcListen(WindowListener.ready, (_: unknown, value: string) => {
-        console.log('electron 启动成功...', value);
-    });
     const getAnswer = useEventSource(GET_ANSWER);
 
     // 问题 loading 效果

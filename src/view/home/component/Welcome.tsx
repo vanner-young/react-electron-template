@@ -15,7 +15,7 @@ const listData = [
     {
         name: 'analyze',
         title: '文件分析小助手',
-        description: '分析本地文件夹、文件、在线的网页链接，并汇总结果。'
+        description: '分析本地文件夹、文件、在线的网页链接，并汇总结果'
     },
     {
         name: 'search',
@@ -32,6 +32,7 @@ const listData = [
 ];
 export default memo(function () {
     const info = useUserInfo().info();
+
     return (
         <section className="w-full flex items-center justify-center flex-col">
             <Welcome

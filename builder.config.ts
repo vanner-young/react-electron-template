@@ -81,7 +81,6 @@ export default defineMvConfig({
             '!package-lock.json'
         ],
         win: {
-            sign: null,
             target: 'nsis',
             icon: 'public/logo.png'
         },

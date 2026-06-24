@@ -86,3 +86,9 @@
         color: var(--color-primary-color);
     }
 }
+@utility app-region {
+    app-region: drag;
+}
+@utility app-no-region {
+    app-region: no-drag;
+}

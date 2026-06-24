@@ -34,8 +34,12 @@ npm run lint
 
 2. 项目配置
 
-本项目使用了 @vite-electron-simple/core 库来实现主进程与渲染进程的桥接。
-具体的配置文件为项目根目录下的：builder.config.ts。可在此文件中配置：vite、electron、electron-builder 相关功能。具体可参考：[@vite-electron-simple/core](https://www.npmjs.com/package/@vite-electron-simple/core)
+本项目使用了 monorepo 架构实现。
+
+> 具体的配置文件为项目根目录下的：builder.config.ts。可在此文件中配置：vite、electron、electron-builder 相关功能。具体可参考：[@vite-electron-simple/core](https://www.npmjs.com/package/@vite-electron-simple/core)
+
+- 参考 [@vite-electron-simple/core](https://www.npmjs.com/package/@vite-electron-simple/core) 库查看核心框架实现及配置。
+- 参考 [@vite-electron-simple/common](https://github.com/vanner-young/vite-electron-simple/tree/master/packages/common) 库实现了丰富的 electron 插件功能。
 
 #### 参与贡献
 

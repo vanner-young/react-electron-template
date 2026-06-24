@@ -8,8 +8,9 @@ import {
 
 import path from 'path';
 import { app, BrowserWindow } from 'electron';
-import IpcEvent from './event';
-import TrayApplication from './core/Tray';
+
+import { TrayApplication } from './core/Tray';
+import { EventCenterInstance } from './event';
 
 Logger.open(); // 日志记录
 SingleAppLock(); // 程序单例
@@ -28,23 +29,25 @@ const createWindow = () => {
         webPreferences: { preload: path.resolve(__dirname, './preload.js') }
     });
     win.loadURL((process.env.ELECTRON_URL as string) || `app://./index.html`);
+
+    // 可根据条件开启, 默认在非 build 模式下开启控制台
     if (!app.isPackaged) win.webContents.openDevTools();
     return win;
 };
 
 app.whenReady().then(() => {
     app.setName(process.env.APP_NAME || ''); // 设置应用名称
-
     mainWindow = createWindow();
-    IpcEvent.register(mainWindow); // Ipc 注册
 
-    // 托盘功能
-    TrayApplication.start({
+    // event 事件注册, 监听渲染进程的消息
+    EventCenterInstance.handler(mainWindow);
+
+    // 启动app系统托盘
+    new TrayApplication({
         icon: iconPath,
-        mainWindow: mainWindow
-    });
+        window: mainWindow
+    }).start();
 
-    if (!app.isPackaged) showTopApplication(mainWindow); // 置顶
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) {
             createWindow();

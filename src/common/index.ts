@@ -28,7 +28,7 @@ export const dataFormat = (date: Date, format: string) => {
 export const isClientEnv = (
     cb?: (isElectron: boolean) => void | Promise<(isElectron: boolean) => void>
 ) => {
-    const env = !!import.meta.env.OPEN_ELECTRON;
+    const env = window.hasElectron;
     if (!env) {
         console.warn('electron env is not detected...');
     }
