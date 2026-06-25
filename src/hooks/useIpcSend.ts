@@ -1,5 +1,5 @@
-import { WindowHandler } from '@/type';
-import { isClientEnv } from '@/common';
+import { WindowHandler } from "@/type";
+import { isClientEnv } from "@/common";
 
 const env = isClientEnv();
 const ipcRender = window.sendToMain;

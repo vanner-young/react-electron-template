@@ -1,34 +1,31 @@
-import { memo } from 'react';
-import { Welcome } from '@ant-design/x';
+import { memo } from "react";
+import { Welcome } from "@ant-design/x";
 
-import Icon from '@/component/Icon';
-import { LOGO_URL } from '@/constance';
-import { useUserInfo } from '@/store/useUserInfo';
+import Icon from "@/component/Icon";
+import { LOGO_URL } from "@/constance";
+import { useUserInfo } from "@/store/useUserInfo";
 
 const listData = [
     {
-        name: 'frontend',
-        title: '网站代码小助手',
-        description:
-            '开发网站代码，并且还可以帮你保存在本地，如果有需要也可以自动打开预览。'
+        name: "frontend",
+        title: "网站代码小助手",
+        description: "开发网站代码，并且还可以帮你保存在本地，如果有需要也可以自动打开预览。",
     },
     {
-        name: 'analyze',
-        title: '文件分析小助手',
-        description: '分析本地文件夹、文件、在线的网页链接，并汇总结果'
+        name: "analyze",
+        title: "文件分析小助手",
+        description: "分析本地文件夹、文件、在线的网页链接，并汇总结果",
     },
     {
-        name: 'search',
-        title: '资料查询小助手',
-        description:
-            '查询本地文件夹、文件、在线的网页链接，并根据内容结果查询问题。'
+        name: "search",
+        title: "资料查询小助手",
+        description: "查询本地文件夹、文件、在线的网页链接，并根据内容结果查询问题。",
     },
     {
-        name: 'translate',
-        title: '语言翻译小助手',
-        description:
-            '查询本地文件、在线的网页链接，及聊天内容，并且可以自定义翻译资料库结合翻译。'
-    }
+        name: "translate",
+        title: "语言翻译小助手",
+        description: "查询本地文件、在线的网页链接，及聊天内容，并且可以自定义翻译资料库结合翻译。",
+    },
 ];
 export default memo(function () {
     const info = useUserInfo().info();
@@ -51,13 +48,9 @@ export default memo(function () {
                         >
                             <section className="mb-[10px] flex items-center">
                                 <Icon name={`${item.name} text-[1rem]`} />
-                                <span className="ml-[5px] font-bold">
-                                    {item.title}
-                                </span>
+                                <span className="ml-[5px] font-bold">{item.title}</span>
                             </section>
-                            <section className="text-[0.8rem]">
-                                {item.description}
-                            </section>
+                            <section className="text-[0.8rem]">{item.description}</section>
                         </section>
                     );
                 })}

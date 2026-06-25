@@ -4,7 +4,7 @@
  * @param { string } format 格式化字符串
  * **/
 export const dataFormat = (date: Date, format: string) => {
-    const padNumber = (num: number) => num.toString().padStart(2, '0');
+    const padNumber = (num: number) => num.toString().padStart(2, "0");
 
     const year = String(date.getFullYear());
     const month = padNumber(date.getMonth() + 1);
@@ -14,23 +14,21 @@ export const dataFormat = (date: Date, format: string) => {
     const seconds = padNumber(date.getSeconds());
 
     return format
-        .replace('YYYY', year)
-        .replace('MM', month)
-        .replace('DD', day)
-        .replace('hh', hours)
-        .replace('mm', minutes)
-        .replace('ss', seconds);
+        .replace("YYYY", year)
+        .replace("MM", month)
+        .replace("DD", day)
+        .replace("hh", hours)
+        .replace("mm", minutes)
+        .replace("ss", seconds);
 };
 
 /**
  * 判断是否为客户端环境
  * **/
-export const isClientEnv = (
-    cb?: (isElectron: boolean) => void | Promise<(isElectron: boolean) => void>
-) => {
+export const isClientEnv = (cb?: (isElectron: boolean) => void | Promise<(isElectron: boolean) => void>) => {
     const env = window.hasElectron;
     if (!env) {
-        console.warn('electron env is not detected...');
+        console.warn("electron env is not detected...");
     }
     if (cb) return cb(env);
     else return env;

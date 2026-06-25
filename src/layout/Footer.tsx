@@ -1,5 +1,5 @@
-import React from 'react';
-import { version } from '../../package.json';
+import React from "react";
+import { version } from "../../package.json";
 
 export default React.memo(() => {
     return (

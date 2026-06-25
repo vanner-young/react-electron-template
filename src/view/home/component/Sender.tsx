@@ -1,5 +1,5 @@
-import { memo, useState } from 'react';
-import { Sender } from '@ant-design/x';
+import { memo, useState } from "react";
+import { Sender } from "@ant-design/x";
 
 export interface SenderProps {
     thinking: boolean;
@@ -7,10 +7,10 @@ export interface SenderProps {
 }
 
 export default memo(function (props: SenderProps) {
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState("");
 
     const submit = (value: string) => {
-        setValue('');
+        setValue("");
         props.requestAnswer(value);
     };
 

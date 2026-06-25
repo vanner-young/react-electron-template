@@ -1,11 +1,10 @@
-import { Notification } from 'electron';
+import { Notification } from "electron";
 
 class NotificationMessage {
     static instance: NotificationMessage | null;
 
     static getInstance() {
-        if (!NotificationMessage.instance)
-            NotificationMessage.instance = new NotificationMessage();
+        if (!NotificationMessage.instance) NotificationMessage.instance = new NotificationMessage();
         return NotificationMessage.instance;
     }
 
@@ -13,8 +12,8 @@ class NotificationMessage {
 
     constructor() {
         this.#notification = new Notification({
-            timeoutType: 'default',
-            silent: false
+            timeoutType: "default",
+            silent: false,
         });
     }
 
@@ -23,8 +22,8 @@ class NotificationMessage {
     }
 
     show(
-        { title = '', subtitle = '', body = '', closeBefore = false },
-        cb: ((event: Electron.Event) => void) | null = null
+        { title = "", subtitle = "", body = "", closeBefore = false },
+        cb: ((event: Electron.Event) => void) | null = null,
     ) {
         if (closeBefore) this.close();
         this.#notification.title = title;
@@ -32,10 +31,8 @@ class NotificationMessage {
         this.#notification.body = body;
         this.#notification.show();
         if (cb) {
-            this.#notification.on('click', cb);
-            this.#notification.on('close', () =>
-                this.#notification.off('click', cb)
-            );
+            this.#notification.on("click", cb);
+            this.#notification.on("close", () => this.#notification.off("click", cb));
         }
     }
 }

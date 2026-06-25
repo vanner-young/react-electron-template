@@ -1,8 +1,8 @@
-import { create } from 'zustand';
-import { UserInfo } from '@/type';
+import { create } from "zustand";
+import { UserInfo } from "@/type";
 
 interface ModeState {
-    info: () => UserInfo['info'] | null;
+    info: () => UserInfo["info"] | null;
     userInfo: UserInfo | null;
     setUserInfo: (info: UserInfo | null) => void;
     cleanUserInfo: () => void;
@@ -11,28 +11,28 @@ interface ModeState {
 export const useUserInfo = create<ModeState>()((set, get) => ({
     userInfo: {
         info: {
-            nickname: '张三',
+            nickname: "张三",
             sex: 0,
-            avatar_url: '',
-            phone: '',
-            des: ''
+            avatar_url: "",
+            phone: "",
+            des: "",
         },
-        id: '',
-        username: '',
-        status: '',
+        id: "",
+        username: "",
+        status: "",
         role: {
-            name: ''
-        }
+            name: "",
+        },
     },
     info() {
         const { userInfo } = get();
         if (!userInfo) return null;
-        return userInfo['info'];
+        return userInfo["info"];
     },
     setUserInfo: (info: UserInfo | null) => {
         set({ userInfo: info });
     },
     cleanUserInfo: () => {
         set({ userInfo: null });
-    }
+    },
 }));

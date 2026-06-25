@@ -1,14 +1,8 @@
-import { showTopApplication } from '@vite-electron-simple/common';
-import {
-    app,
-    shell,
-    IpcMainInvokeEvent,
-    BrowserWindow,
-    ipcMain
-} from 'electron';
+import { showTopApplication } from "@vite-electron-simple/common";
+import { app, shell, IpcMainInvokeEvent, BrowserWindow, ipcMain } from "electron";
 
-import { IpcEvent } from '../types/IpcEvent';
-import Notification from '../core/Notification';
+import { IpcEvent } from "../types/IpcEvent";
+import Notification from "../core/Notification";
 
 class WindowEvent implements IpcEvent {
     constructor() {
@@ -19,13 +13,13 @@ class WindowEvent implements IpcEvent {
         return Notification.getInstance();
     }
 
-    _listenerEventList: IpcEvent['_listenerEventList'] = [
-        { name: 'min', handler: this.onMin },
-        { name: 'close', handler: this.onQuit },
-        { name: 'hidden', handler: this.backgroundRun },
-        { name: 'toggle', handler: this.toggle },
-        { name: 'window:top', handler: this.windowTop },
-        { name: 'open:url', handler: this.openUrl }
+    _listenerEventList: IpcEvent["_listenerEventList"] = [
+        { name: "min", handler: this.onMin },
+        { name: "close", handler: this.onQuit },
+        { name: "hidden", handler: this.backgroundRun },
+        { name: "toggle", handler: this.toggle },
+        { name: "window:top", handler: this.windowTop },
+        { name: "open:url", handler: this.openUrl },
     ];
 
     public async windowTop(mainWindow: BrowserWindow) {
@@ -52,8 +46,8 @@ class WindowEvent implements IpcEvent {
         this.onHide(mainWindow);
         this.NotificationInstance.show({
             title: app.getName(),
-            subtitle: '提示',
-            body: '在托盘中可以找到我哦！'
+            subtitle: "提示",
+            body: "在托盘中可以找到我哦！",
         });
     }
 
@@ -61,11 +55,7 @@ class WindowEvent implements IpcEvent {
         mainWindow.hide();
     }
 
-    public async openUrl(
-        _: BrowserWindow,
-        _$: IpcMainInvokeEvent,
-        targetPath: unknown
-    ) {
+    public async openUrl(_: BrowserWindow, _$: IpcMainInvokeEvent, targetPath: unknown) {
         shell.openPath(targetPath as string);
     }
 

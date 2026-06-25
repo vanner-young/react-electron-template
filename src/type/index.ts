@@ -1,17 +1,17 @@
 // 渲染进程消息发送
 export enum WindowHandler {
-    min = 'main:window:min',
-    hidden = 'main:window:hidden',
-    close = 'main:window:close',
-    openUrl = 'main:window:open:url',
-    toggle = 'main:window:toggle',
-    windowTop = 'main:window:window:top'
+    min = "main:window:min",
+    hidden = "main:window:hidden",
+    close = "main:window:close",
+    openUrl = "main:window:open:url",
+    toggle = "main:window:toggle",
+    windowTop = "main:window:window:top",
 }
 
 // 渲染进程消息监听
 export enum WindowListener {
-    ready = 'ready',
-    quitWindow = 'quit:app'
+    ready = "ready",
+    quitWindow = "quit:app",
 }
 
 export interface IndexDict {
@@ -25,7 +25,7 @@ export interface IndexString {
 export interface ResponseAnswerData {
     result: Array<{
         content: string;
-        type: 'human' | 'ai';
+        type: "human" | "ai";
         id: string;
     }>;
     current_agent: string;
@@ -36,7 +36,7 @@ export interface ResponseAnswerData {
             description: string;
             agent: string;
             step: string;
-        }
+        },
     ];
 }
 

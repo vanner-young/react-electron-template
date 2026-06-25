@@ -1,13 +1,13 @@
-import type { BrowserWindow } from 'electron';
+import type { BrowserWindow } from "electron";
 
 // 渲染进程监听channel前缀
 export enum EventBaseName {
-    mainWindow = 'main:window' // main window
+    mainWindow = "main:window", // main window
 }
 
 // 主进程到渲染进程channel定义
 export enum BrowserEvent {
-    quitApp = 'quit:app'
+    quitApp = "quit:app",
 }
 
 export interface IpcEvent {

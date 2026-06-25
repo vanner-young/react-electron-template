@@ -1,8 +1,8 @@
-import { showTopApplication } from '@vite-electron-simple/common';
-import { app, Tray, nativeImage, Menu, BrowserWindow } from 'electron';
+import { showTopApplication } from "@vite-electron-simple/common";
+import { app, Tray, nativeImage, Menu, BrowserWindow } from "electron";
 
-import { EventCenterInstance } from '../event';
-import { BrowserEvent } from '../types/IpcEvent';
+import { EventCenterInstance } from "../event";
+import { BrowserEvent } from "../types/IpcEvent";
 
 export interface TrayProps {
     icon: string;
@@ -11,19 +11,19 @@ export interface TrayProps {
 
 export class TrayApplication {
     _config = {
-        icon: '',
+        icon: "",
         menus: Menu.buildFromTemplate([
             {
-                label: '打开程序',
-                type: 'normal',
-                click: () => this.openApplication()
+                label: "打开程序",
+                type: "normal",
+                click: () => this.openApplication(),
             },
             {
-                label: '退出',
-                type: 'normal',
-                click: () => this.quickApplication()
-            }
-        ])
+                label: "退出",
+                type: "normal",
+                click: () => this.quickApplication(),
+            },
+        ]),
     };
     _window!: BrowserWindow;
     #Tray!: Tray;
@@ -38,7 +38,7 @@ export class TrayApplication {
         this.#Tray.setToolTip(app.getName());
         this.#Tray.setContextMenu(this._config.menus);
 
-        this.#Tray.addListener('double-click', this.openApplication);
+        this.#Tray.addListener("double-click", this.openApplication);
     }
 
     public async openApplication() {

@@ -21,7 +21,6 @@ dist_electron
 bundle
 .vscode
 dist
-tsconfig.tsbuildinfo
 
 # environment files
 *.env.*.local

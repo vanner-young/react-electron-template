@@ -1,14 +1,12 @@
-import { AxiosResponse } from 'axios';
-import { useEffect, useState } from 'react';
+import { AxiosResponse } from "axios";
+import { useEffect, useState } from "react";
 
 export interface UseHttpRequestProps<T, S> {
     requestCb: (...args: Array<unknown>) => Promise<AxiosResponse>;
     filterData?: (data: S) => T;
 }
 
-export default function useHttpRequest<T, S>(
-    props: UseHttpRequestProps<T, S>
-): [T, boolean, () => void] {
+export default function useHttpRequest<T, S>(props: UseHttpRequestProps<T, S>): [T, boolean, () => void] {
     const [data, setData] = useState<T>([] as T);
     const [loading, setLoading] = useState(false);
 
@@ -17,8 +15,7 @@ export default function useHttpRequest<T, S>(
         props
             .requestCb()
             .then((result) => {
-                if (result.data.code !== 200)
-                    throw new Error(result.data.result);
+                if (result.data.code !== 200) throw new Error(result.data.result);
 
                 if (props.filterData) {
                     setData(props.filterData(result.data.result));

@@ -1,19 +1,19 @@
 {
-    "compilerOptions": {
-        "rootDir": "./electron",
-        "target": "esnext",
-        "module": "nodenext",
-        "moduleResolution": "nodenext",
-        "esModuleInterop": true,
-        "strict": true,
-        "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true,
-        "outDir": "./dist_electron",
-        "typeRoots": [
-            "./node_modules/@types", // 保留 @types/node
-            "./electron/app.env.d.ts" // 自定义声明文件目录
-        ]
-    },
-    "exclude": ["node_modules"],
-    "include": ["electron/**/*"]
+  "compilerOptions": {
+    "rootDir": "./electron",
+    "target": "esnext",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist_electron",
+    "typeRoots": [
+      "./node_modules/@types", // 保留 @types/node
+      "./electron/app.env.d.ts" // 自定义声明文件目录
+    ]
+  },
+  "exclude": ["node_modules", "src"],
+  "include": ["electron/**/*"]
 }

@@ -3,7 +3,7 @@ export default function Icon<C>({
     title,
     active = false,
     children,
-    onClick
+    onClick,
 }: {
     name: string;
     title?: string;
@@ -15,7 +15,7 @@ export default function Icon<C>({
         <span
             onClick={() => onClick?.()}
             title={title}
-            className={`icon iconfont icon-${name} ${active ? 'cursor-pointer' : ''}`}
+            className={`icon iconfont icon-${name} ${active ? "cursor-pointer" : ""}`}
         >
             {children}
         </span>

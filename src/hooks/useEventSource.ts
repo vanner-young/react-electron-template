@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import { IndexString } from '@/type';
+import { useEffect, useRef, useState } from "react";
+import { IndexString } from "@/type";
 
 export type Cb = (event: MessageEvent | undefined, error?: Event) => void;
 export default function useEventSource(url: string) {
@@ -19,26 +19,25 @@ export default function useEventSource(url: string) {
 
     const error = (e: Event) => {
         setState(-1);
-        if (typeof eventCb.current === 'function')
-            eventCb.current(undefined, e);
+        if (typeof eventCb.current === "function") eventCb.current(undefined, e);
         close();
     };
 
     const message = (event: MessageEvent) => {
-        if (typeof eventCb.current === 'function') eventCb.current(event);
+        if (typeof eventCb.current === "function") eventCb.current(event);
     };
 
     const removeEvent = () => {
-        sse.current?.removeEventListener('open', open);
-        sse.current?.removeEventListener('error', error);
-        sse.current?.removeEventListener('message', message);
+        sse.current?.removeEventListener("open", open);
+        sse.current?.removeEventListener("error", error);
+        sse.current?.removeEventListener("message", message);
         eventCb.current = undefined;
     };
 
     const registryEvent = () => {
-        sse.current?.addEventListener('open', open);
-        sse.current?.addEventListener('error', error);
-        sse.current?.addEventListener('message', message);
+        sse.current?.addEventListener("open", open);
+        sse.current?.addEventListener("error", error);
+        sse.current?.addEventListener("message", message);
     };
 
     const connect = (query: IndexString, cb: Cb) => {

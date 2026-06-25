@@ -1,20 +1,18 @@
-import { memo, useState, useMemo } from 'react';
-import { useMemoizedFn } from 'ahooks';
+import { memo, useState, useMemo } from "react";
+import { useMemoizedFn } from "ahooks";
 
-import Sender from '@/view/home/component/Sender';
-import MessageHistory from '@/component/MessageHistory';
-import { MessageHistoryList } from '@/component/MessageHistory/type';
-import Welcome from '@/view/home/component/Welcome';
+import Sender from "@/view/home/component/Sender";
+import MessageHistory from "@/component/MessageHistory";
+import { MessageHistoryList } from "@/component/MessageHistory/type";
+import Welcome from "@/view/home/component/Welcome";
 
-import { ResponseAnswerData } from '@/type';
-import useEventSource from '@/hooks/useEventSource';
-import { GET_ANSWER } from '@/request/sse/question';
+import { ResponseAnswerData } from "@/type";
+import useEventSource from "@/hooks/useEventSource";
+import { GET_ANSWER } from "@/request/sse/question";
 
 export const Home = memo(() => {
     const [thinking, setThinking] = useState(false);
-    const [messageHistory, setMessageHistory] = useState<MessageHistoryList>(
-        []
-    );
+    const [messageHistory, setMessageHistory] = useState<MessageHistoryList>([]);
 
     const getAnswer = useEventSource(GET_ANSWER);
 
@@ -25,16 +23,16 @@ export const Home = memo(() => {
         const messages: typeof messageHistory = [
             {
                 id,
-                type: 'user',
-                value: question
+                type: "user",
+                value: question,
             },
             {
                 id: id + 1,
-                type: 'robot',
-                value: '',
-                status: 'loading',
-                question
-            }
+                type: "robot",
+                value: "",
+                status: "loading",
+                question,
+            },
         ];
         setMessageHistory(messageHistory.concat(messages));
     };
@@ -45,7 +43,7 @@ export const Home = memo(() => {
             const newHistory = [...history];
             const lastHistoryItem = newHistory.at(-1);
             if (lastHistoryItem) {
-                lastHistoryItem.status = 'error';
+                lastHistoryItem.status = "error";
             }
             return newHistory;
         });
@@ -63,7 +61,7 @@ export const Home = memo(() => {
                         const lastStep = lastItem.value.at(-1);
                         const answer = data.result.at(-1);
                         if (lastStep && answer) {
-                            lastStep.status = 'success';
+                            lastStep.status = "success";
                             lastStep.answer = answer.content;
                         }
                     }
@@ -72,22 +70,19 @@ export const Home = memo(() => {
                         // subtask 阶段
                         newHistory.pop();
                         const id = Date.now();
-                        const subtasks: MessageHistoryList = data.subtasks.map(
-                            (item, index) => ({
-                                id: id + index,
-                                type: 'robot',
-                                status: 'step',
-                                value: [
-                                    {
-                                        key: item.step,
-                                        title: item.agent,
-                                        description: item.description,
-                                        status:
-                                            index === 0 ? 'pending' : undefined
-                                    }
-                                ]
-                            })
-                        );
+                        const subtasks: MessageHistoryList = data.subtasks.map((item, index) => ({
+                            id: id + index,
+                            type: "robot",
+                            status: "step",
+                            value: [
+                                {
+                                    key: item.step,
+                                    title: item.agent,
+                                    description: item.description,
+                                    status: index === 0 ? "pending" : undefined,
+                                },
+                            ],
+                        }));
                         if (subtasks.length) newHistory.push(...subtasks);
                     } else {
                         // 匹配current step阶段
@@ -97,9 +92,9 @@ export const Home = memo(() => {
                             lastItem.value = lastItem.value.map((item) => {
                                 if (item.key === data.current_step) {
                                     find = true;
-                                    item.status = 'pending';
+                                    item.status = "pending";
                                 } else {
-                                    if (!find) item.status = 'success';
+                                    if (!find) item.status = "success";
                                 }
                                 return item;
                             });
@@ -136,25 +131,15 @@ export const Home = memo(() => {
     });
 
     // 是否显示欢迎界面
-    const showThinkingStep = useMemo(
-        () => messageHistory?.length,
-        [messageHistory]
-    );
+    const showThinkingStep = useMemo(() => messageHistory?.length, [messageHistory]);
 
     return (
         <section className="w-[100vw] h-[calc(100%-100px)]">
             <section className="relative py-0 h-full flex flex-col">
                 <section
-                    className={`flex items-center justify-center min-h-[65vh] px-[15%] ${showThinkingStep ? 'flex-1 overflow-y-auto' : ''}`}
+                    className={`flex items-center justify-center min-h-[65vh] px-[15%] ${showThinkingStep ? "flex-1 overflow-y-auto" : ""}`}
                 >
-                    {showThinkingStep ? (
-                        <MessageHistory
-                            retry={retryQuestion}
-                            history={messageHistory}
-                        />
-                    ) : (
-                        <Welcome />
-                    )}
+                    {showThinkingStep ? <MessageHistory retry={retryQuestion} history={messageHistory} /> : <Welcome />}
                 </section>
                 <Sender thinking={thinking} requestAnswer={requestAnswer} />
             </section>

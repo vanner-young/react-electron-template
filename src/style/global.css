@@ -1,6 +1,6 @@
-@import 'tailwindcss';
-@import './variable.css';
-@import '../asset/font/iconfont.css';
+@import "tailwindcss";
+@import "./variable.css";
+@import "../asset/font/iconfont.css";
 
 html,
 body,

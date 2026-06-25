@@ -1,14 +1,11 @@
-import { useCallback, useEffect, useRef } from 'react';
-import { WindowListener } from '@/type';
-import { isClientEnv } from '@/common';
+import { useCallback, useEffect, useRef } from "react";
+import { WindowListener } from "@/type";
+import { isClientEnv } from "@/common";
 
 const env = isClientEnv();
 const ipcRender = window.listenMain;
 
-export function useIpcListen<T>(
-    type: WindowListener,
-    cb: (_: unknown, value: T) => unknown
-) {
+export function useIpcListen<T>(type: WindowListener, cb: (_: unknown, value: T) => unknown) {
     const handler = useRef(cb);
 
     const eventHandler = useCallback((event: unknown, value: T) => {

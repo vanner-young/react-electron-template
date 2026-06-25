@@ -1,7 +1,7 @@
-import type { BrowserWindow } from 'electron';
+import type { BrowserWindow } from "electron";
 
-import { WindowEventInstance } from './window';
-import { EventBaseName, BrowserEvent } from '../types/IpcEvent';
+import { WindowEventInstance } from "./window";
+import { EventBaseName, BrowserEvent } from "../types/IpcEvent";
 
 class EventCenter {
     events = new Map([[EventBaseName.mainWindow, WindowEventInstance]]);
